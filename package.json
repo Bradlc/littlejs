@@ -1,0 +1,19 @@
+{
+	"name": "littlejs",
+	"version": "0.1.0",
+	"description": "",
+	"devDependencies": {
+		"gulp": "latest",
+		"gulp-jshint": "latest",
+		"gulp-uglify": "latest",
+		"gulp-rename": "latest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Bradlc/littlejs.git"
+	},
+	"author": {
+		"name": "Brad Cornes",
+		"email": "bradlc41@gmail.com"
+	}
+}
