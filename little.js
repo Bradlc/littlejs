@@ -37,7 +37,7 @@
 		} else {
 			readyList.push( {fn: callback, ctx: context} );
 		}
-		if( document.readyState === "complete" || (!document.attachEvent && document.readyState === "interactive") ) {
+		if( document.readyState === "complete" || ( !document.attachEvent && document.readyState === "interactive" ) ) {
 
 			setTimeout( onready, 1 );
 
@@ -55,6 +55,19 @@
 		}
 
 	};
+
+	/*----------------------------*\
+		Query Selector Functions
+	\*----------------------------*/
+	function qs( selector, context ) {
+		context = ( typeof context === 'undefined' ) ? document : context;
+		return context.querySelector( selector );
+	}
+
+	function qsa( selector, context ) {
+		context = ( typeof context === 'undefined' ) ? document : context;
+		return context.querySelectorAll( selector );
+	}
 
 	/*----------------------------*\
 		Class Helper Functions
@@ -139,6 +152,8 @@
 
 	window.little = {
 		ready: ready,
+		qs: qs,
+		qsa: qsa,
 		addClass: addClass,
 		removeClass: removeClass,
 		toggleClass: toggleClass,
