@@ -110,12 +110,40 @@
 		}
 	}
 
+	/*----------------------------*\
+		Event Handlers
+	\*----------------------------*/
+	function on( type, elem, selector, fn ) {
+
+		fn = ( typeof selector === 'function' ) ? selector : fn;
+
+		elem.addEventListener( type, function( e ) {
+
+			if( typeof selector === 'string' ){
+
+				if( e.target.matches( selector ) ) {
+
+					fn.apply( e.target, [e] );
+
+				}
+
+			} else {
+
+				fn.apply( this, [e] );
+
+			}
+
+		} );
+
+	}
+
 	window.little = {
 		ready: ready,
 		addClass: addClass,
 		removeClass: removeClass,
 		toggleClass: toggleClass,
-		hasClass: hasClass
+		hasClass: hasClass,
+		on: on
 	};
 
 })(window);
