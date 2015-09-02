@@ -56,8 +56,66 @@
 
 	};
 
+	/*----------------------------*\
+		Class Helper Functions
+		Adapted from classie by desandro: https://github.com/desandro/classie
+	\*----------------------------*/
+	var hasClass, addClass, removeClass;
+
+	function classReg( className ) {
+		return new RegExp( "(^|\\s+)" + className + "(\\s+|$)" );
+	}
+
+	if ( 'classList' in document.documentElement ) {
+		hasClass = function( elem, c ) {
+			return elem.classList.contains( c );
+		};
+		addClass = function( elem, c ) {
+			elem = elem.length ? elem : [elem];
+			for( var i = 0; i < elem.length; i++ ) {
+				elem[i].classList.add( c );
+			}
+		};
+		removeClass = function( elem, c ) {
+			elem = elem.length ? elem : [elem];
+			for( var i = 0; i < elem.length; i++ ) {
+				elem[i].classList.remove( c );
+			}
+		};
+	} else {
+		hasClass = function( elem, c ) {
+			return classReg( c ).test( elem.className );
+		};
+		addClass = function( elem, c ) {
+			elem = elem.length ? elem : [elem];
+			for( var i = 0; i < elem.length; i++ ){
+				if ( !hasClass( elem[i], c ) ) {
+					elem[i].className = elem[i].className + ' ' + c;
+				}
+			}
+		};
+		removeClass = function( elem, c ) {
+			elem = elem.length ? elem : [elem];
+			for( var i = 0; i < elem.length; i++ ){
+				elem[i].className = elem[i].className.replace( classReg( c ), ' ' );
+			}
+		};
+	}
+
+	function toggleClass( elem, c ) {
+		elem = elem.length ? elem : [elem];
+		for( var i = 0; i < elem.length; i++ ){
+			var fn = hasClass( elem[i], c ) ? removeClass : addClass;
+			fn( elem[i], c );
+		}
+	}
+
 	window.little = {
-		ready: ready
+		ready: ready,
+		addClass: addClass,
+		removeClass: removeClass,
+		toggleClass: toggleClass,
+		hasClass: hasClass
 	};
 
 })(window);
