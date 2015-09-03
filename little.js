@@ -1,4 +1,4 @@
-(function(window){
+!(function(window){
 
 	'use strict';
 
@@ -151,14 +151,16 @@
 	}
 
 	window.little = {
-		ready: ready,
 		qs: qs,
 		qsa: qsa,
-		addClass: addClass,
-		removeClass: removeClass,
-		toggleClass: toggleClass,
-		hasClass: hasClass,
-		on: on
+		util: {
+			ready: ready,
+			addClass: addClass,
+			removeClass: removeClass,
+			toggleClass: toggleClass,
+			hasClass: hasClass,
+			on: on
+		}
 	};
 
 })(window);
