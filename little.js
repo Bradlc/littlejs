@@ -3,6 +3,13 @@
 	'use strict';
 
 	/*----------------------------*\
+		TODO:
+		wrap() - wrap element(s) in a new container element
+		unwrap()
+		move() - move element(s)
+	\*----------------------------*/
+
+	/*----------------------------*\
 		Document Ready
 		https://github.com/jfriend00/docReady
 	\*----------------------------*/
@@ -67,6 +74,16 @@
 	function qsa( selector, context ) {
 		context = ( typeof context === 'undefined' ) ? document : context;
 		return context.querySelectorAll( selector );
+	}
+
+	/*----------------------------*\
+		Manipulation
+	\*----------------------------*/
+	function remove( elem ) {
+		elem = elem.length ? elem : [elem];
+		for( var i = 0; i < elem.length; i++ ) {
+			elem[i].parentNode.removeChild( elem[i] );
+		}
 	}
 
 	/*----------------------------*\
@@ -155,6 +172,7 @@
 		qsa: qsa,
 		util: {
 			ready: ready,
+			remove: remove,
 			addClass: addClass,
 			removeClass: removeClass,
 			toggleClass: toggleClass,
