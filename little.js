@@ -146,8 +146,11 @@
 	function on( type, elem, selector, fn ) {
 
 		fn = ( typeof selector === 'function' ) ? selector : fn;
+		elem = ( elem.length ) ? elem : [elem];
 
-		elem.addEventListener( type, function( e ) {
+		function listener( e ) {
+
+			/* jshint validthis: true */
 
 			if( typeof selector === 'string' ){
 
@@ -163,7 +166,13 @@
 
 			}
 
-		} );
+		}
+
+		for( var i = 0; i < elem.length; i++ ) {
+
+			elem[i].addEventListener( type, listener );
+
+		}
 
 	}
 
