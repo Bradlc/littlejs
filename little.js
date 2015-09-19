@@ -165,9 +165,11 @@
 
 			if( typeof selector === 'string' ){
 
-				if( e.target.matches( selector ) ) {
+				var target = e.target.closest( selector );
 
-					fn.apply( e.target, [e] );
+				if( target ) {
+
+					fn.apply( target, [e] );
 
 				}
 
