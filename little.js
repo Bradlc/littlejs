@@ -1,4 +1,4 @@
-(function(window){
+(function(window, document){
 
 	'use strict';
 
@@ -84,6 +84,17 @@
 		for( var i = 0; i < elem.length; i++ ) {
 			elem[i].parentNode.removeChild( elem[i] );
 		}
+	}
+
+	/*----------------------------*\
+		Styles
+	\*----------------------------*/
+	function windowWidth() {
+		return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+	}
+
+	function windowHeight() {
+		return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 	}
 
 	/*----------------------------*\
@@ -182,6 +193,8 @@
 		util: {
 			ready: ready,
 			remove: remove,
+			windowWidth: windowWidth,
+			windowHeight: windowHeight,
 			addClass: addClass,
 			removeClass: removeClass,
 			toggleClass: toggleClass,
@@ -190,4 +203,4 @@
 		}
 	};
 
-})(window);
+})(window, document);
